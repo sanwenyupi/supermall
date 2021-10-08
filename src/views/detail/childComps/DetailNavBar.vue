@@ -34,6 +34,7 @@ import NavBar from '../../../components/common/navbar/NavBar.vue'
         methods: {
           titleClick(index){
             this.currentIndex = index
+            this.$emit('titleClick', index)
           },
           backClick(){
             this.$router.back()

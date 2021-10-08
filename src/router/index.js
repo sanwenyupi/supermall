@@ -16,19 +16,31 @@ const routes = [
   },
   {
     path: '/home',
-    component: Home
+    component: Home,
+    meta: {
+      footShow: true
+    }
   },
   {
     path: '/category',
-    component: Category
+    component: Category,
+    meta: {
+      footShow: true
+    }
   },
   {
     path: '/cart',
-    component: Cart
+    component: Cart,
+    meta: {
+      footShow: true
+    }
   },
   {
     path: '/profile',
-    component: Profile
+    component: Profile,
+    meta: {
+      footShow: true
+    }
   },
   {
     path: '/detail/:id',

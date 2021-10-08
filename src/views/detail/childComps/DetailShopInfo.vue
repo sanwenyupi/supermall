@@ -2,10 +2,10 @@
     <div class="shop-info">
       <div class="shop-top">
         <img :src="shop.logo" alt="">
-        <span class="title">{{shop.name}}</span>
+        <span class="title">{{shop.name}}</span>  
       </div>
       <div class="shop-middle">
-        <div class="shop-middle-item shop-item-left">
+        <div class="shop-middle-item shop-middle-left">
           <div class="info-sells">
             <div class="sells-count">
               {{shop.sells | sellCountFilter}}
@@ -19,7 +19,7 @@
             <div class="goods-text">全部宝贝</div>
           </div>
         </div>
-        <div class="shop-middle-item shop-item-right">
+        <div class="shop-middle-item shop-middle-right">
           <table>
             <tr v-for="(item, index) in shop.score" :key="index">
               <td>{{item.name}}</td>
@@ -30,9 +30,9 @@
             </tr>
           </table>
         </div>
-        <div class="shop-bottom">
+      </div>
+      <div class="shop-bottom">
           <div class="enter-shop">进店逛逛</div>
-        </div>
       </div>
     </div>
 </template>
@@ -90,6 +90,7 @@
       justify-content: space-evenly;
       color: #333;
       text-align: center;
+      align-items: center;
       border-right: 1px solid rgba(0, 0, 0, .1);
     }
     .sells-count, .goods-count{
@@ -125,6 +126,15 @@
       background: #f13e3a;
     }
     .shop-bottom{
-
+      width: 100%;
+    }
+    .enter-shop{
+      background-color: #eee;
+      border-radius: 5px;
+      width: 40%;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      margin: 0 auto;
     }
 </style>

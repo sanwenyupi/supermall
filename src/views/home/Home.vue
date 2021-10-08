@@ -92,6 +92,9 @@ import {getHomeMultidata, getHomeGoods} from '../../network/home'
         this.getHomeGoods('new')
         this.getHomeGoods('sell')
       },
+      updated() {
+        this.$refs.scroll.scroll.refresh()
+      },
       methods: {
         // 事件监听
         tabClick(index){
@@ -155,6 +158,8 @@ import {getHomeMultidata, getHomeGoods} from '../../network/home'
     height: 100vh;
   }
   .home-nav{
+    position: relative;
+    z-index: 9;
     background-color: var(--color-tint);
     color: #fff;
   }
