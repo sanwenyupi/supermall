@@ -23,7 +23,7 @@
                   @tabClick="tabClick"
                   ref="tabControl2"
                   />
-      <goods-list :goods="showGoods"></goods-list>
+      <goods-list :goods="showGoods" />
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackTop"/>
   </div>

@@ -7,7 +7,7 @@
       <scroll class="content" 
               ref="scroll" 
               @scroll="contentScroll" 
-              :probeType="3">
+              :probe-type="3">
         <detail-carousel :top-images="topImages"/>
         <detail-base-info :goods="goods" />
         <detail-shop-info :shop="shop" />
@@ -17,7 +17,8 @@
         <goods-list ref="recommend" :goods="recommends" />
       </scroll>
       
-      <detail-bottom-bar />
+      <detail-bottom-bar @addCart="addToCart" />
+
     </div>
 </template>
 
@@ -36,6 +37,8 @@ import Scroll from '../../components/common/scroll/Scroll.vue'
 import {debounce} from '../../common/utils'
 import GoodsList from '../../components/content/goods/GoodsList.vue'
 
+import {mapActions} from 'vuex'
+
     export default {
         name: 'Detail',
         data() {
@@ -50,7 +53,7 @@ import GoodsList from '../../components/content/goods/GoodsList.vue'
             recommends: [],
             themeTopYs: [],
             getThemeTopY: null,
-            currentIndex: 0
+            currentIndex: 0,
             }
         },
         components: {
@@ -63,7 +66,7 @@ import GoodsList from '../../components/content/goods/GoodsList.vue'
           DetailParamInfo,
           DetailCommentInfo,
           GoodsList,
-          DetailBottomBar
+          DetailBottomBar,
         },
         created() {
           // 1.保存传入的id
@@ -115,14 +118,18 @@ import GoodsList from '../../components/content/goods/GoodsList.vue'
           
         },
         methods: {
+          // 图片加载，计算高度
+          ...mapActions(['addCart']),
           imageLoad(){
             this.$refs.scroll.scroll.refresh()
             this.getThemeTopY()
           },
+          // 点击nav-bar滚动到的对应位置
           titleClick(index){
             // console.log(index);
             this.$refs.scroll.scrollTo(0, -this.themeTopYs[index], 100)
           },
+          // 滚动到对应位置时nav-bar对应显示
           contentScroll(position){
             const y = -position.y
             
@@ -135,6 +142,23 @@ import GoodsList from '../../components/content/goods/GoodsList.vue'
                 this.$refs.nav.currentIndex = this.currentIndex
               }
             }
+          },
+          // 添加到购物车
+          addToCart(){
+            console.log(111);
+            // 1.获取商品信息
+            const product = {}
+            product.image = this.topImages[0]
+            product.title = this.goods.title
+            product.desc = this.goods.desc
+            product.price = this.goods.realPrice
+            product.iid = this.iid 
+            // 2.将商品添加到购物车中
+            // this.$store.commit('addCart', product)
+            this.addCart(product).then(res => {
+              this.$toast.show(res, 2000)
+            })
+
           }
         },
     }
