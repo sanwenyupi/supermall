@@ -1,51 +1,50 @@
 <template>
-    <div id="category-content">
-      <category-left 
-      :categoryList="categoryList" 
-      @leftItem="leftItem"/>
-      <category-right 
-      :itemName="itemName"
-      :currentIndex="currentIndex"
-      />
-    </div>
+  <div>
+    <grid-view :cols="3" :lineSpace="15" :v-margin="20" v-if="subCategories.list">
+      <div class="item" v-for="(item, index) in subCategories.list" :key="index">
+        <a :href="item.link">
+          <img class="item-img" :src="item.image" alt="">
+          <div class="item-text">{{item.title}}</div>
+        </a>
+      </div>
+    </grid-view>
+  </div>
 </template>
 
-<script type="text/ecmascript-6">
-import CategoryLeft from './CategoryLeft.vue'
-import CategoryRight from './CategoryRight.vue'
-    export default {
-        components: {
-          CategoryLeft,
-          CategoryRight
-        },
-        props: {
-          categoryList: {
-            type: Array,
-            default(){
-              return []
-            }
-          }
-        },
-        data() {
-          return {
-            itemName: '',
-            currentIndex: 0
-          }
-        },
-        methods: {
-          leftItem(item, index){
-            console.log(item.title, index);
-            this.itemName = item.title
-            this.currentIndex = index
-          }
-        },
+<script>
+  import GridView from '../../../components/common/gridView/GridView.vue'
+
+  export default {
+    name: "CategoryContent",
+    components: {
+      GridView
+    },
+    props: {
+      subCategories: {
+        type: Object,
+        default() {
+          return {}
+        }
+      }
     }
+  }
 </script>
 
 <style scoped>
-    #category-content{
-      display: flex;
-      background-color: #fff;
-    }
+  .panel img {
+    width: 100%;
+  }
 
+  .item {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .item-img {
+    width: 80%;
+  }
+
+  .item-text {
+    margin-top: 15px;
+  }
 </style>

@@ -2,10 +2,11 @@
     <div class="left">
       <scroll class="content">
         <div 
-        v-for="(item, index) in categoryList"
+        v-for="(item, index) in categories"
         class="left-item"
         :class="{active: currentIndex === index}"
-        @click="itemClick(item, index)"
+        @click="itemClick(index)"
+        :key="index"
         >
           <span>{{item.title}}</span>
         </div>
@@ -20,7 +21,7 @@ import Scroll from '../../../components/common/scroll/Scroll.vue'
           Scroll 
         },
         props: {
-          categoryList: {
+          categories: {
             type: Array,
             default(){
               return []
@@ -33,9 +34,9 @@ import Scroll from '../../../components/common/scroll/Scroll.vue'
           }
         },
         methods: {
-          itemClick(item, index){
+          itemClick(index){
             this.currentIndex =index
-            this.$emit('leftItem',item, index)
+            this.$emit('selectItem',index)
           }
         },
     }
@@ -55,11 +56,11 @@ import Scroll from '../../../components/common/scroll/Scroll.vue'
   .active::before{
     content:'';
     position: absolute;
-    width: 4px;
-    height: 20px;
+    width: 6px;
+    height: 50px;
     background-color: var(--color-tint);
-    top: 15px;
-    left: 3px;
+    top: 0;
+    left: 0;
   }
   .left-item{
     height: 50px;
