@@ -45,7 +45,8 @@ import Scroll from '../../components/common/scroll/Scroll.vue'
     .nav-bar{
       background-color: var(--color-tint);
       color: #fff;
-      font-weight: 600;
+      font-weight: bold;
+      font-size: 17px;
     }
     .content{
       height: calc(100% - 44px - 49px - 40px);

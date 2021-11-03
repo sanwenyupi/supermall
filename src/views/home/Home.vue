@@ -84,6 +84,7 @@ import {getHomeMultidata, getHomeGoods} from '../../network/home'
         this.saveY = this.$refs.scroll.scroll.y
       },
       created(){
+        console.log(111);
         // 1. 请求轮播图数据和推荐数据
         this.getHomeMultidata()
 
@@ -162,6 +163,8 @@ import {getHomeMultidata, getHomeGoods} from '../../network/home'
     z-index: 9;
     background-color: var(--color-tint);
     color: #fff;
+    font-size: 17px;
+    font-weight: bold;
   }
 
   .content{
