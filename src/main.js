@@ -7,11 +7,17 @@ import store from './store/index'
 import toast from './components/common/toast'
 import FastClick from 'fastclick'
 import VueLazyLoad from 'vue-lazyload'
+import Vant from 'vant'
+import 'vant/lib/index.css'
+import Axios from 'axios'
+Vue.prototype.HOST = 'http://localhost:4000'
+Vue.prototype.$axios = Axios
 
 Vue.config.productionTip = false
 
 // 安装ElemntUI
 Vue.use(ElementUI)
+Vue.use(Vant)
 // 安装toast插件
 Vue.use(toast)
 

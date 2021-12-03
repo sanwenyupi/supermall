@@ -8,7 +8,11 @@ import getters from './getters'
 Vue.use(Vuex)
 
 const state = {
-  cartList: []
+  cartList: [],
+  userInfo: {
+    isLogin: false,
+    user: ''
+  }
 }
 // 2.创建store对象
 const store = new Vuex.Store({

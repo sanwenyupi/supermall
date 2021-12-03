@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive exclude="Detail">
+    <keep-alive exclude="Detail Login">
       <router-view></router-view>
     </keep-alive>
     <main-tab-bar v-if="$route.meta.footShow"></main-tab-bar>
